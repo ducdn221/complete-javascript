@@ -114,3 +114,19 @@ var averageMary = (97+134+105) / 3;
 /******************************
 * FUNCTION
 */
+
+function example(argument) {
+    reuturn;
+}
+
+/******************************
+* FUNCTION Statements and Expressions
+*/
+// function statement
+function example() {
+    reuturn;
+}
+// function expression
+var whatDoYouDo = function(job, firstName) {
+
+}
