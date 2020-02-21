@@ -48,7 +48,11 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 document.querySelector('.btn-hold').addEventListener("click", function() {
     if(activePlayer ===0) {
         scores[activePlayer] = scores[activePlayer] + parseInt(document.querySelector("#current-" + activePlayer).textContent);
-        return;
+        if(scores[activePlayer] === 100){
+            return;
+        }
+        document.querySelector("#current-" + activePlayer).textContent
+        return; 
     }
 
 })
