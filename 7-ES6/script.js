@@ -195,16 +195,14 @@ function calcAge(year) {
 // const [age2, retirement] = calcAgeRetirement(1990);
 // console.log(age, retirement);
 
-
-
 ////////////////////////////////////////////
 // Lecture: Arrays
 const boxes = document.querySelectorAll(".box");
 
 //ES5
 var boxesArr5 = Array.prototype.slice.call(boxes);
-boxesArr5.forEach(function (cur) {
-    cur.style.backgroundColor = "dodgerblue";
+boxesArr5.forEach(function(cur) {
+  cur.style.backgroundColor = "dodgerblue";
 });
 
 //ES6
@@ -246,9 +244,6 @@ const boxesArr6 = Array.from(boxes);
 // console.log(ages.findIndex(cur => cur >= 18));
 // console.log(ages.find(cur => cur >= 18));
 
-
-
-
 ////////////////////////////////////////////
 // Lecture: Spread operator
 // function addFourAges(a, b, c, d) {
@@ -275,7 +270,6 @@ const boxesArr6 = Array.from(boxes);
 // const boxes = document.querySelectorAll('.box');
 // const all = [h, ...boxes];
 // all.forEach(cur => cur.style.color = 'purple');
-
 
 ////////////////////////////////////////////
 // Lecture: Rest parameter
@@ -322,21 +316,24 @@ isFullAge6(16,1990,1999,1965);*/
 // Lecture: Maps
 
 const question = new Map();
-question.set('question', 'What is the official name of the lastest major Javascript version');
-question.set(1, 'ES5');
-question.set(2, 'ES6');
-question.set(3, '2015');
-question.set(4, 'ES7');
-question.set('correct', 3);
-question.set('true', 'You are correct');
-question.set('false', 'You are wrong');
+question.set(
+  "question",
+  "What is the official name of the lastest major Javascript version"
+);
+question.set(1, "ES5");
+question.set(2, "ES6");
+question.set(3, "2015");
+question.set(4, "ES7");
+question.set("correct", 3);
+question.set("true", "You are correct");
+question.set("false", "You are wrong");
 // console.log(question.get('question'));
 // console.log(question.size);
 
 // if (question.has(4)) {
 //     console.log('Answer 4 is here');
 // }
-// question.clear(); 
+// question.clear();
 // question.forEach((value, key) =>
 //     console.log(`This is ${key}, it's set to ${value}`));
 
@@ -346,5 +343,43 @@ question.set('false', 'You are wrong');
 //         console.log(`Answer ${key}: ${value}`)
 //     }
 // }
-const ans = parseInt(prompt('Write the correct answer'));
-console.log(question.get(ans === question.get('correct')));
+const ans = parseInt(prompt("Write the correct answer"));
+console.log(question.get(ans === question.get("correct")));
+
+////////////////////////////////////////////
+// Lecture: Classes
+
+//ES 5
+var Person5 = function(name, yearOfBirth, job) {
+  this.name = name;
+  this.yearOfBirth = yearOfBirth;
+  this.job = job;
+};
+
+Person5.prototype.calculateAge = function() {
+  var age = new Date().getFullYear - this.yearOfBirth;
+  console.log(age);
+};
+
+var john5 = new Person5("John", 1990, "teacher");
+
+//ES6
+class Person6 {
+  constructor(name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+  }
+
+  calculateAge() {
+    var age = new Date().getFullYear - this.yearOfBirth;
+    console.log(age);
+  }
+
+  static greeting() {
+      console.log('Hey there !');
+  }
+}
+
+var john6 = new Person6("John", 1990, "teacher");
+Person6.greeting();
