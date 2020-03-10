@@ -130,7 +130,7 @@ elements.shopping.addEventListener('click', e => {
 /**
  * Like Controller
  */
-state.likes = new Likes();
+
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
     const currentID = state.recipe.id;
@@ -143,6 +143,7 @@ const controlLike = () => {
         // Toggle the like button
         likeView.toggleLikeBtn(true);
         //Add like to UI list
+        likeView.renderLike(newLike);
 
     } else {
         // Remove like to the state
@@ -151,8 +152,27 @@ const controlLike = () => {
         // Toggle the like button
         likeView.toggleLikeBtn(false);
         // Remove like to UI list
+        likeView.deleteLike(currentID)
     }
+    likeView.toggleLikeMenu(state.likes.getNumLikes());
+
 }
+
+//Restore when the page load
+windown.addEventListener('load', () => {
+    state.likes = new Likes();
+
+    //restore likes
+    state.likes.readStorage();
+
+    // Toggle like menu button
+    likeView.toggleLikeMenu(state.likes.getNumLikes());
+
+    //render the existing likes
+    state.likes.likes.forEach(like => likeView.renderLike(like));
+
+})
+
 
 // Handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
@@ -169,7 +189,7 @@ elements.recipe.addEventListener('click', e => {
     } else if (e.target.matches('.recipe__btn--add, recipe__btn--add *')) {
         // Add ingredients to shopping list
         controlList();
-    } else if (e.target.matches('.recipe__love, recipe__love *')) {
+    } else if (e.target.matches('.recipe__love, .recipe__love *')) {
         controlLike();
     }
 })
